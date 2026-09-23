@@ -80,6 +80,35 @@ public class OrderService {
     }
 
     public List<OrderResponse> getAllOrderResponses() {
+
+        List<Order> orders = orderRepository.findAll();
+        List<OrderResponse> orderResponses = new ArrayList<>();
+
+        for (Order order : orders) {
+
+            List<OrderItemResponse> itemResponses = new ArrayList<>();
+
+            for (OrderItem item : order.getOrderItems()) {
+                OrderItemResponse orderItemResponse = new OrderItemResponse(
+                        item.getProduct().getName(),
+                        item.getQuantity(),
+                        item.getTotalPrice()
+                );
+
+                itemResponses.add(orderItemResponse);
+            }
+
+            OrderResponse orderResponse = new OrderResponse(
+                    order.getOrderId(),
+                    order.getCustomerName(),
+                    order.getEmail(),
+                    order.getStauts(),
+                    order.getOrderDate(),
+                    itemResponses
+            );
+
+            orderResponses.add(orderResponse);
+        }
         return null;
     }
 }

@@ -65,7 +65,7 @@ public class ProductController {
         return new ResponseEntity<>("Deleted", HttpStatus.OK);
     }
 
-    @GetMapping("/products/search/{keyword}")
+    @GetMapping("/products/search")
     public ResponseEntity<List<Product>> searchProducts(@RequestParam String keyword) {
         List<Product> products = productService.searchProducts(keyword);
         System.out.println(products);
