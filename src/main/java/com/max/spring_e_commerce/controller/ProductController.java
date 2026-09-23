@@ -71,5 +71,4 @@ public class ProductController {
         System.out.println(products);
         return new ResponseEntity<>(products, HttpStatus.OK);
     }
-
 }
